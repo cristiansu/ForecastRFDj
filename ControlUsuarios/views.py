@@ -95,7 +95,8 @@ def error_page(request):
 
 def send_mail_after_registration(email,token):
     subject='Tu cuenta necesita ser verificada'
-    message=f'Hola, haz click en el link para verificar tu cuenta: http://127.0.0.1:8000/verify/{token}'
+    #message=f'Hola, haz click en el link para verificar tu cuenta: http://127.0.0.1:8000/verify/{token}'
+    message=f'Hola, haz click en el link para verificar tu cuenta: https://forecast-app-rf.herokuapp.com/verify/{token}'
     email_from=settings.EMAIL_HOST_USER
     recipient_list=[email,]
     send_mail(subject, message, email_from, recipient_list)
