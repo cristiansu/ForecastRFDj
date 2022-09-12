@@ -24,15 +24,18 @@ def login_attemp(request):
         user_obj=User.objects.filter(username=username).first() 
         if user_obj is None:
             messages.success(request, 'Usuario no encontrado')
-            return redirect('/login') 
+            #return redirect('/login') 
+            return render(request, 'login.html')
         profile_obj=Profile.objects.filter(user=user_obj).first()  
         if not profile_obj.is_verified:
             messages.success(request, 'Usuario no verificado. Revisa tu mail')
-            return redirect('/login') 
+            #return redirect('/login') 
+            return render(request, 'login.html')
         user=authenticate(username=username, password=password)
         if user is None:
             messages.success(request, 'Error Password')
-            return redirect('/login')
+            #return redirect('/login')
+            return render(request, 'login.html')
         login(request, user)
         return redirect('/home')
 
@@ -79,12 +82,14 @@ def verify(request, auth_token):
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Tu cuenta está vigente')
-                return redirect('/login')
+                #return redirect('/login')
+                return render(request, 'login.html')
 
             profile_obj.is_verified =True
             profile_obj.save()
             messages.success(request, 'Tu cuenta ha sido verificada correctamente')
-            return redirect('/login')
+            #return redirect('/login')
+            return render(request, 'login.html')
         else:
             return redirect('/error')
     except Exception as e:
