@@ -78,13 +78,25 @@ WSGI_APPLICATION = "Forecast.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+'''
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+'''
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd3fmm5a6gdsbgq',
+        'USER': 'wmmexkhrjuohfr',
+        'PASSWORD': 'd96655717e76e176d5d0d3210dbbd300333526599c10015f098289130edc007c',
+        'HOST': 'ec2-52-4-87-74.compute-1.amazonaws.com',
+        'PORT': 5432,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
