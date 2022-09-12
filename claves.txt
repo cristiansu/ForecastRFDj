@@ -1,0 +1,2 @@
+superuser: adminCs, mail: saavedra_cristian@hotmail.com, clave: csu123
+usuario: usuarioTest, mail: testingcgc@gmail.com, clave:123***

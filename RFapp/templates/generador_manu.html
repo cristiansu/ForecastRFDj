@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="global-container">
+	<div class="card login-form w-50">
+	<div class="card-body">
+		<h3 class="card-title text-center">Generador Forecast de Ventas Manual</h3>
+		{% if messages %}
+		<ul class="alert alert-info">
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<div class="card-text">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				
+				<div class="form-group">
+					<label for="exampleInputEmail1">Ingrese Data para Forecast en Archivo Excel (.xlsx)</label>
+					<input type="file" name="myfile" class="form-control form-control-sm" id="archivoDataForecast" aria-describedby="archivoForecast">
+				</div>
+
+				<a href="{% url 'forecast_list_manu' %}" style="float:right;font-size:13px;">Ver Detalle Forecast</a>
+				<button type="submit" class="btn btn-primary btn-block mt-2">Generar</button>
+				<div class="sign-up mt-2">
+					Volver al Home? <a href="{% url 'home' %}">Home</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+{% endblock content %}

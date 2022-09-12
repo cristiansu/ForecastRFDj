@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block extra-ccs-js %}
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>       
+    <!-- font awesome iconos -->
+    <script src="https://kit.fontawesome.com/a882f9e3dc.js" crossorigin="anonymous"></script>
+    <!-- datatables css-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+{% endblock extra-ccs-js %}
+
+
+{% block content %}
+
+    <div class="card-body text-center">
+        <table class="table table-striped table-hover table-responsive">
+            <tr>
+                <th>
+                    <a href="{% url 'home' %}">Forecast</a>
+                </th>
+                <th>
+                    <i class="fa-solid fa-user-gear">{{ request.user.username }}</i>
+                </th>
+                <th>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <div class="card-body">
+        <h2 class="card-title text-center">Forecast de Ventas - Machine Learning - Random Forest - Manual</h2>
+    </div>
+
+    <br>
+        <div class="card-body">
+            <a href="{% url 'generador_manual' %}" class="btn btn-primary">Nuevo Forecast</a>
+            <a href="{% url 'excel_export_manual' %}" class="btn btn-info">Exportar Excel</a>
+            <a href="{% url 'grafica_manu' %}" class="btn btn-success">Grafico</a>
+        </div>
+    <br>
+
+    
+    
+    <table class="table table-striped table-hover table-responsive" id="tabla">
+        <thead>
+            <tr>
+                <th>Fecha_Create</th>
+                <th>Usuario</th>
+                <th>Forecast</th>
+                <th>Codigo</th>
+                <th>Fecha</th>
+                <th>Dia</th>
+                <th>Mes</th>
+                <th>CONTACTOS_TLV</th>
+                <th>CONTACTOS_WEB</th>
+                <th>CONTACTOS_IMP</th>
+                <th>BB_CATEGORIA</th>
+                <th>DTV_PROGRAMACION</th>
+                <th>DTV_TOH</th>
+                <th>MACRO_IPC</th>
+                <th>MACRO_USD</th>
+                <th>GT_DEPOR_COPA_ARGENTINA</th>
+                <th>GT_DEPOR_CHAMPIONS_LEAGUE</th>
+                <th>GT_DEPOR_REAL_VS_BARZA</th>
+                <th>GT_DEPOR_RACING_VS_INDEP</th>
+                <th>GT_DEPOR_MUNDIAL_FUTBOL</th>
+                <th>GT_DEPOR_ROLAND_GARROS</th>
+                <th>GT_DEPOR_WIMBLEDON</th>
+                <th>PRECIO_DIRECTV</th>
+                <th>DTV_CTA</th>
+                <th>COMP_TELECENTRO</th>
+                <th>CBV_TOH</th>
+                <th>CBV_DEPORTE</th>
+                <th>TEL_GOOGLETRENDS</th>
+                <th>Forecast_ACTIVACIONES_POS</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for d in datos %}
+            <tr>
+                <td>{{ d.Date_Create | date:"d-m-Y" }}</td>
+                <td>{{ d.usuario }}</td>
+                <td>{{ d.tipo }}</td>
+                <td>{{ d.codigo}}</td>
+                <td>{{ d.Fecha }}</td>
+                <td>{{ d.Dia }}</td>
+                <td>{{ d.Mes }}</td>
+                <td>{{ d.CONTACTOS_TLV | floatformat:3 }}</td>
+                <td>{{ d.CONTACTOS_WEB | floatformat:3 }}</td>
+                <td>{{ d.CONTACTOS_IMP | floatformat:3 }}</td>
+                <td>{{ d.BB_CATEGORIA | floatformat:3 }}</td>
+                <td>{{ d.DTV_PROGRAMACION | floatformat:3 }}</td>
+                <td>{{ d.DTV_TOH | floatformat:3 }}</td>
+                <td>{{ d.MACRO_IPC | floatformat:3 }}</td>
+                <td>{{ d.MACRO_USD | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_COPA_ARGENTINA | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_CHAMPIONS_LEAGUE | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_REAL_VS_BARZA | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_RACING_VS_INDEP | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_MUNDIAL_FUTBOL | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_ROLAND_GARROS | floatformat:3 }}</td>
+                <td>{{ d.GT_DEPOR_WIMBLEDON | floatformat:3 }}</td>
+                <td>{{ d.PRECIO_DIRECTV | floatformat:3 }}</td>
+                <td>{{ d.DTV_CTA | floatformat:3 }}</td>
+                <td>{{ d.COMP_TELECENTRO | floatformat:3 }}</td>
+                <td>{{ d.CBV_TOH | floatformat:3 }}</td>
+                <td>{{ d.CBV_DEPORTE | floatformat:3 }}</td>
+                <td>{{ d.TEL_GOOGLETRENDS | floatformat:3 }}</td>
+                <td>{{ d.Forecast_ACTIVACIONES_POS | floatformat:3 }}</td>
+    
+    
+            </tr>
+            
+            {% endfor %}
+            
+        </tbody>
+    
+    </table>
+
+
+
+
+
+    <footer>
+		<div class="row">
+			<p>Forecast Machine Learning con Django<br>Visítanos en: <a href="https://web-casgroup-capacitacion.herokuapp.com/">Cas Group Capacitación</a></p>
+		</div>
+	</footer>
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <!-- datatable js -->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+  
+    <script>
+        $(document).ready(function(){
+            $('#tabla').DataTable({
+
+            });
+        });
+    </script>
+
+
+
+
+
+{% endblock content %}

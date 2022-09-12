@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block extra-ccs-js %}
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- conexión con chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <!-- font awesome iconos -->
+    <script src="https://kit.fontawesome.com/a882f9e3dc.js" crossorigin="anonymous"></script>
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+{% endblock extra-ccs-js %}
+
+
+{% block content %}
+
+    <div class="card-body text-center">
+
+        <table class="table table-striped table-hover table-responsive">
+            <tr>
+                <th>
+                    <a href="{% url 'home' %}">Forecast</a>
+                </th>
+                <th>
+                    <i class="fa-solid fa-user-gear">{{ request.user.username }}</i>
+                </th>
+                <th>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </th>
+            </tr>
+    
+        </table>
+
+
+    </div>
+
+    <br>
+
+    <div class="card-body">
+        <h2 class="card-title text-center">Forecast de Ventas - Machine Learning - Random Forest - Manual</h2>
+    </div>
+
+    <br>
+        <div class="card-body">
+            <a href="{% url 'forecast_list_manu' %}" class="btn btn-info">Volver Forecast</a>
+        </div>
+    <br>
+
+    {% if messages %}
+    <ul class="alert alert-info">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="container">
+        <table>
+            <tr>
+                <h2 class="card-title text-center">Forecast_ACTIVACIONES_POS</h2>
+                {{ ventas|safe }}
+                <br>
+                {{ ventasBp|safe }}
+                
+            </tr>
+
+            <tr>   
+                <h2 class="card-title text-center">PRECIO_DIRECTV</h2>
+                {{ precioDtv|safe }}
+                <br>
+                {{ precioDtvBp|safe }} 
+            </tr>
+
+            <tr>
+                <h2 class="card-title text-center">COMP_TELECENTRO</h2>
+                {{ comCompetencia|safe }} 
+                <br>
+                {{ comCompetenciaBp|safe }}
+            </tr>
+        </table>
+        
+        
+    </div>
+    
+    <footer>
+		<div class="row">
+			<p>Forecast Machine Learning con Django<br>Visítanos en: <a href="https://web-casgroup-capacitacion.herokuapp.com/">Cas Group Capacitación</a></p>
+		</div>
+	</footer>
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+{% endblock content %}
