@@ -1,6 +1,6 @@
-superuser: adminCs, mail: saavedra_cristian@hotmail.com, clave: csu123
+
 usuario: usuarioTest, mail: testingcgc@gmail.com, clave:123***
-usuario2: usuarioPrueba, contacto@casgroup.cl, clave: 321***
+
 
 
 https://forecast-app-rf.herokuapp.com/
